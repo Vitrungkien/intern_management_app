@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quản lý intern</title>
+<!--   <link rel="stylesheet" type="text/css" href="style.css">-->
+<style>
+    body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+#logo1 {
+  width: 10%;
+  height: 10%;
+  border-radius: 10px;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    background-color: #555;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#pagination {
+    margin-top: 10px;
+}
+
+#pagination button {
+    margin-right: 5px;
+    padding: 8px 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#pagination button:hover {
+    background-color: #555;
+}
+
+
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <h2>Menu</h2>
+  <ul>
+    <li>Trang chủ</li>
+    <li>Danh sách intern</li>
+    <li>Lịch lên công ty</li>
+    <li>Thêm intern</li>
+    <li>Sửa intern</li>
+    <li>Xóa intern</li>
+  </ul>
+</div>
+
+<div class="content">
+  <img src="http://tinasoft.vn/wp-content/uploads/2023/02/Tinasoft-Logo-1-03-2-1.png" alt="logo" id="logo1">
+  <h2>Danh sách intern</h2>
+  <input type="text" id="searchInput" placeholder="Tìm kiếm intern...">
+  <table id="internTable">
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Phone number</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Vi Trung Kien</td>
+      <td>Java Backend</td>
+      <td>0343579228</td>
+      <td>vtkien2511@gmail.com</td>
+      <td>Mo Lao, Ha Dong</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Ma Dinh Chien</td>
+      <td>Java Backend</td>
+      <td>0866638820</td>
+      <td>chienft@gmail.com</td>
+      <td>Mo Lao, Ha Dong</td>
+    </tr>
+        <tr>
+      <td>3</td>
+      <td>Bui Trung Duc</td>
+      <td>Java Backend</td>
+      <td>0343579228</td>
+      <td>ducbt@stu.ptit.edu.vn</td>
+      <td>Mo Lao, Ha Dong</td>
+    </tr>
+        <tr>
+      <td>4</td>
+      <td>Tran Duc Luong</td>
+      <td>Java Backend</td>
+      <td>0343579228</td>
+      <td>luongtd@stu.ptit.edu.vn</td>
+      <td>Mo Lao, Ha Dong</td>
+    </tr>
+        <tr>
+      <td>5</td>
+      <td>Minh Quan</td>
+      <td>Java Backend</td>
+      <td>0343579228</td>
+      <td>quanmn@stu.ptit.edu.vn</td>
+      <td>Mo Lao, Ha Dong</td>
+    </tr>
+
+    <!-- Các dòng dữ liệu intern khác -->
+  </table>
+  <div id="pagination">
+    <button onclick="previousPage()">Trang trước</button>
+    <button onclick="nextPage()">Trang sau</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<tr>-->
+<!--  <td>6</td>-->
+<!--  <td>Nguyen Thi Loan</td>-->
+<!--  <td>Tester</td>-->
+<!--  <td>0343579228</td>-->
+<!--  <td>loannt@stu.ptit.edu.vn</td>-->
+<!--  <td>Mo Lao, Ha Dong</td>-->
+<!--</tr>-->
