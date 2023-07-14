@@ -35,7 +35,7 @@ public class UserController {
         Optional<User> foundUser = repository.findById(id);
         return foundUser.isPresent() ?
             ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok", "Query product successfully", foundUser)
+                    new ResponseObject("ok", "Query user successfully", foundUser)
             ):
             ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                     new ResponseObject("false", "Cannot find User with id = "+id, "")
@@ -44,7 +44,7 @@ public class UserController {
 
     @PostMapping("insert")
     ResponseEntity<ResponseObject> insertUser(@RequestBody User newUser) {
-        List<User> foundUsers = repository.findByUserName(newUser.getuserName().trim());
+        List<User> foundUsers = repository.findByUserName(newUser.getUserName().trim());
         if (foundUsers.size() > 0) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
                     new ResponseObject("failed", "User name alreadly taken", "")
@@ -59,11 +59,11 @@ public class UserController {
     ResponseEntity<ResponseObject> updateUser(@RequestBody User newUser, @PathVariable Long id) {
         User updatedUser =  repository.findById(id)
                 .map(user -> {
-                    user.setuserName(newUser.getuserName());
-                    user.setPosition(newUser.getPosition());
-                    user.setPhoneNumber(newUser.getPhoneNumber());
+                    user.setUserName(newUser.getUserName());
                     user.setEmail(newUser.getEmail());
-                    user.setAddress(newUser.getAddress());
+                    user.setPassword(newUser.getPassword());
+                    user.setPosition(newUser.getPosition());
+                    user.setMentor(newUser.getMentor());
                     return repository.save(user);
                 }).orElseGet(() -> {
                     newUser.setId(id);

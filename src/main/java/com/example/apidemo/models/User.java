@@ -2,29 +2,49 @@ package com.example.apidemo.models;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+import java.util.List;
+
 //POJO = Plain Object Java Object
 @Entity
-@Table(name = "tbleUser")
+@Table(name = "tbleUser", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
     //primary key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "user_name")
     private String userName;
-    private String position;
-    private String phoneNumber;
+
+    @Column(name = "email")
     private String email;
-    private String address;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "position")
+    private String position;
+
+    @Column(name = "mentor")
+    private String mentor;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+
+    private Collection<Role> roles;
     //default constructor
     public User(){
     }
 
-    public User(String userName, String position, String phoneNumber, String email, String address) {
+    public User(String userName, String email, String password, String position, String mentor, Collection<Role> roles) {
         this.userName = userName;
-        this.position = position;
-        this.phoneNumber = phoneNumber;
         this.email = email;
-        this.address = address;
+        this.password = password;
+        this.position = position;
+        this.mentor = mentor;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -35,28 +55,12 @@ public class User {
         this.id = id;
     }
 
-    public String getuserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setuserName(String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -67,12 +71,36 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getMentor() {
+        return mentor;
+    }
+
+    public void setMentor(String mentor) {
+        this.mentor = mentor;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -80,10 +108,11 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", position='" + position + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
+                ", password='" + password + '\'' +
+                ", position='" + position + '\'' +
+                ", mentor='" + mentor + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }
