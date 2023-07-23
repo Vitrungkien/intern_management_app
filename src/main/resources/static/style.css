@@ -4,10 +4,35 @@ body {
     background-color: #f2f2f2;
 }
 
+
 #logo1 {
-    width: 10%;
-    height: 10%;
+    width: 15%;
+    height: 15%;
     border-radius: 10px;
+}
+
+a {
+    float: right;
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.login-tag:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
 }
 
 .sidebar {

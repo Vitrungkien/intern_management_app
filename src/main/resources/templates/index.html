@@ -2,7 +2,13 @@
 <html>
 <head>
   <title>Quản lý intern</title>
-   <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+  <link rel="icon" th:href="@{/image/tinasoft-logo1.png}" type="image/png" id="sitelogo">
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+  <script th:src="@{/script.js}" type="text/javascript"></script>
+
+  <!--    <link rel="stylesheet" type="text/css" href="/static/style.css">-->
+   <style>
+   </style>
 </head>
 <body>
 <div class="sidebar">
@@ -19,94 +25,47 @@
 
 <div class="content">
   <img th:src="@{/image/tinasoft-logo.jpg}" alt="logo" id="logo1">
+  <a th:href="@{registration}" class="login-tag">Register</a>
+  <a th:href="@{login}" class="login-tag">Login</a>
+  <!-- <img src="/static/image/tinasoft-logo.jpg" alt="logo" id="logo1"> 
+  <a href="registration.html" class="logintag">Register</a>
+  <a href="registration.html" class="logintag">Login</a> -->
   <h2>Danh sách intern</h2>
   <input type="text" id="searchInput" placeholder="Tìm kiếm intern...">
+
   <table id="internTable">
     <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>Position</th>
-      <th>Phone number</th>
+      <th>ID</th>
+      <th>User Name</th>
       <th>Email</th>
-      <th>Address</th>
+      <th>Position</th>
+      <th>Mentor</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Vi Trung Kien</td>
-      <td>Java Backend</td>
-      <td>0343579228</td>
-      <td>vtkien2511@gmail.com</td>
-      <td>Mo Lao, Ha Dong</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Ma Dinh Chien</td>
-      <td>Java Backend</td>
-      <td>0866638820</td>
-      <td>chienft@gmail.com</td>
-      <td>Mo Lao, Ha Dong</td>
-    </tr>
-        <tr>
-      <td>3</td>
-      <td>Bui Trung Duc</td>
-      <td>Java Backend</td>
-      <td>0343579228</td>
-      <td>ducbt@stu.ptit.edu.vn</td>
-      <td>Mo Lao, Ha Dong</td>
-    </tr>
-        <tr>
-      <td>4</td>
-      <td>Tran Duc Luong</td>
-      <td>Java Backend</td>
-      <td>0343579228</td>
-      <td>luongtd@stu.ptit.edu.vn</td>
-      <td>Mo Lao, Ha Dong</td>
-    </tr>
-        <tr>
-      <td>5</td>
-      <td>Minh Quan</td>
-      <td>Java Backend</td>
-      <td>0343579228</td>
-      <td>quanmn@stu.ptit.edu.vn</td>
-      <td>Mo Lao, Ha Dong</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Nguyen Thi Loan</td>
-      <td>Tester</td>
-      <td>0343579228</td>
-      <td>loannt@stu.ptit.edu.vn</td>
-      <td>Mo Lao, Ha Dong</td>
-    </tr>
-
-    <!-- Các dòng dữ liệu intern khác -->
+    <!-- Thẻ <tr> và <td> sẽ được tạo bằng cách sử dụng JavaScript -->
   </table>
+
+  <script>
+    // Sử dụng JavaScript để gọi API từ Spring Boot và tạo bảng
+    fetch('/api/v1/Users').then(response => response.json()).then(users => {
+              const table = document.querySelector('table');
+              users.forEach(user => {
+                const row = table.insertRow();
+                row.insertCell().textContent = user.id;
+                row.insertCell().textContent = user.userName;
+                row.insertCell().textContent = user.email;
+                row.insertCell().textContent = user.position;
+                row.insertCell().textContent = user.mentor;
+              });
+            })
+            .catch(error => console.error('Error fetching users:', error));
+  </script>
+
   <div id="pagination">
     <button onclick="previousPage()">Trang trước</button>
     <button onclick="nextPage()">Trang sau</button>
   </div>
 </div>
 
-<script th:src="@{/script.js}"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

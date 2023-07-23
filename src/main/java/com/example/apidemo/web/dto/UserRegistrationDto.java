@@ -7,6 +7,7 @@ public class UserRegistrationDto {
     private String position;
     private String mentor;
 
+    public UserRegistrationDto(){}
     public UserRegistrationDto(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;

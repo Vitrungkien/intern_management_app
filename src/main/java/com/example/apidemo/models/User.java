@@ -1,11 +1,8 @@
 package com.example.apidemo.models;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
-import java.util.List;
 
-//POJO = Plain Object Java Object
 @Entity
 @Table(name = "tbleUser", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
