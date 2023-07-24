@@ -8,9 +8,13 @@ public class Intern {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "position")
     private String position;
+    @Column(name = "mentor_id")
     private Long mentor_id;
 
     public Intern(String name, String email, String position, Long mentor_id) {
@@ -63,4 +67,15 @@ public class Intern {
     public void setMentor_id(Long mentor_id) {
         this.mentor_id = mentor_id;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Intern{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", email='" + email + '\'' +
+//                ", position='" + position + '\'' +
+//                ", mentor_id=" + mentor_id +
+//                '}';
+//    }
 }

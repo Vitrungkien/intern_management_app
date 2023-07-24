@@ -36,28 +36,28 @@
   <table id="internTable">
     <tr>
       <th>ID</th>
-      <th>User Name</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Position</th>
-      <th>Mentor</th>
+      <th>Mentor_ID</th>
     </tr>
     <!-- Thẻ <tr> và <td> sẽ được tạo bằng cách sử dụng JavaScript -->
   </table>
 
   <script>
     // Sử dụng JavaScript để gọi API từ Spring Boot và tạo bảng
-    fetch('/api/v1/Users').then(response => response.json()).then(users => {
+    fetch('/api/v1/intern').then(response => response.json()).then(interns => {
               const table = document.querySelector('table');
-              users.forEach(user => {
+              interns.forEach(intern => {
                 const row = table.insertRow();
-                row.insertCell().textContent = user.id;
-                row.insertCell().textContent = user.userName;
-                row.insertCell().textContent = user.email;
-                row.insertCell().textContent = user.position;
-                row.insertCell().textContent = user.mentor;
+                row.insertCell().textContent = intern.id;
+                row.insertCell().textContent = intern.name;
+                row.insertCell().textContent = intern.email;
+                row.insertCell().textContent = intern.position;
+                row.insertCell().textContent = intern.mentor_id;
               });
             })
-            .catch(error => console.error('Error fetching users:', error));
+            .catch(error => console.error('Error fetching interns:', error));
   </script>
 
   <div id="pagination">

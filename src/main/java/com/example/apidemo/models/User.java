@@ -4,27 +4,21 @@ import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "tbleUser", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "user_account", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
     //primary key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
     private String password;
-
-    @Column(name = "position")
-    private String position;
-
-    @Column(name = "mentor")
-    private String mentor;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -35,12 +29,10 @@ public class User {
     public User(){
     }
 
-    public User(String userName, String email, String password, String position, String mentor, Collection<Role> roles) {
-        this.userName = userName;
+    public User(String username, String email, String password, Collection<Role> roles) {
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.position = position;
-        this.mentor = mentor;
         this.roles = roles;
     }
 
@@ -52,12 +44,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -76,40 +68,11 @@ public class User {
         this.password = password;
     }
 
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getMentor() {
-        return mentor;
-    }
-
-    public void setMentor(String mentor) {
-        this.mentor = mentor;
-    }
-
     public Collection<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", position='" + position + '\'' +
-                ", mentor='" + mentor + '\'' +
-                ", roles=" + roles +
-                '}';
     }
 }

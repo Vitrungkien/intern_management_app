@@ -1,25 +1,24 @@
 package com.example.apidemo.web.dto;
 
 public class UserRegistrationDto {
-    private String userName;
+    private String username;
     private String email;
     private String password;
-    private String position;
-    private String mentor;
 
     public UserRegistrationDto(){}
-    public UserRegistrationDto(String userName, String email, String password) {
-        this.userName = userName;
+
+    public UserRegistrationDto(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -36,21 +35,5 @@ public class UserRegistrationDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getMentor() {
-        return mentor;
-    }
-
-    public void setMentor(String mentor) {
-        this.mentor = mentor;
     }
 }

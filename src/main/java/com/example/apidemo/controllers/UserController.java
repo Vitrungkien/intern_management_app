@@ -23,8 +23,6 @@ public class UserController {
         return repository.findAll();
     }
 
-
-
     @GetMapping("search")
     public List<User> searchUsers(@RequestParam("keyword") String keyword) {
         return repository.findByKeyword(keyword);
@@ -46,7 +44,7 @@ public class UserController {
 
     @PostMapping("insert")
     ResponseEntity<ResponseObject> insertUser(@RequestBody User newUser) {
-        List<User> foundUsers = repository.findByUserName(newUser.getUserName().trim());
+        List<User> foundUsers = repository.findByUsername(newUser.getUsername().trim());
         if (foundUsers.size() > 0) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
                     new ResponseObject("failed", "User name alreadly taken", "")
@@ -61,11 +59,9 @@ public class UserController {
     ResponseEntity<ResponseObject> updateUser(@RequestBody User newUser, @PathVariable Long id) {
         User updatedUser =  repository.findById(id)
                 .map(user -> {
-                    user.setUserName(newUser.getUserName());
+                    user.setUsername(newUser.getUsername());
                     user.setEmail(newUser.getEmail());
                     user.setPassword(newUser.getPassword());
-                    user.setPosition(newUser.getPosition());
-                    user.setMentor(newUser.getMentor());
                     return repository.save(user);
                 }).orElseGet(() -> {
                     newUser.setId(id);

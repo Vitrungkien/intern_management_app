@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class  SecurityConfiguration {
     @Autowired
     private UserService userService;
 
@@ -32,6 +32,7 @@ public class SecurityConfiguration {
                              .requestMatchers("/css/**").permitAll()
                              .requestMatchers("/img/**").permitAll()
                              .requestMatchers("/**").permitAll()
+                             .requestMatchers("/api/v1/intern**")
                 ).formLogin(form -> form.loginPage("/login").permitAll()
                 ).logout(logout -> logout.
                         logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()

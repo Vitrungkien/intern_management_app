@@ -10,8 +10,11 @@ public class Mentor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "position")
     private String position;
 
     public Mentor(String name, String email, String position) {
