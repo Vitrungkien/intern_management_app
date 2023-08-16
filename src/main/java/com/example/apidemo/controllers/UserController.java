@@ -14,25 +14,27 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "api/v1/Users")
 public class UserController {
-    //DI = Dependency Injection
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
+
+    //lay danh sach toan bo user
     @GetMapping("")
     //this request is: http://localhost:8080/api/v1/Users
     List<User> getAllUser() {
-        return repository.findAll();
+        return userRepository.findAll();
     }
 
+    //tim kiem user bang tu khoa
     @GetMapping("search")
     public List<User> searchUsers(@RequestParam("keyword") String keyword) {
-        return repository.findByKeyword(keyword);
+        return userRepository.findByKeyword(keyword);
     }
 
-    //Get detail user
+    //lay ra user bang userId
     @GetMapping("/{id}")
     //let return an object with: data, message, status
     ResponseEntity<ResponseObject> findById(@PathVariable Long id) {
-        Optional<User> foundUser = repository.findById(id);
+        Optional<User> foundUser = userRepository.findById(id);
         return foundUser.isPresent() ?
             ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Query user successfully", foundUser)
@@ -42,41 +44,44 @@ public class UserController {
             );
     }
 
-    @PostMapping("insert")
-    ResponseEntity<ResponseObject> insertUser(@RequestBody User newUser) {
-        List<User> foundUsers = repository.findByUsername(newUser.getUsername().trim());
-        if (foundUsers.size() > 0) {
-            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("failed", "User name alreadly taken", "")
-            );
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok", "Insert User successfully", repository.save(newUser))
-        );
-    }
+    //Them user
+//    @PostMapping("insert")
+//    ResponseEntity<ResponseObject> insertUser(@RequestBody User newUser) {
+//        List<User> foundUsers = userRepository.findByUserName(newUser.getUserName().trim());
+//        if (foundUsers.size() > 0) {
+//            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
+//                    new ResponseObject("failed", "User name alreadly taken", "")
+//            );
+//        }
+//        return ResponseEntity.status(HttpStatus.OK).body(
+//                new ResponseObject("ok", "Insert User successfully", userRepository.save(newUser))
+//        );
+//    }
 
+    //sua user
     @PutMapping("/{id}")
     ResponseEntity<ResponseObject> updateUser(@RequestBody User newUser, @PathVariable Long id) {
-        User updatedUser =  repository.findById(id)
+        User updatedUser =  userRepository.findById(id)
                 .map(user -> {
-                    user.setUsername(newUser.getUsername());
+                    user.setUserName(newUser.getUserName());
                     user.setEmail(newUser.getEmail());
                     user.setPassword(newUser.getPassword());
-                    return repository.save(user);
+                    return userRepository.save(user);
                 }).orElseGet(() -> {
                     newUser.setId(id);
-                    return repository.save(newUser);
+                    return userRepository.save(newUser);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("ok", "update User successfully", updatedUser)
         );
     }
 
+    //xoa user
     @DeleteMapping("/{id}")
     ResponseEntity<ResponseObject> deleteUser(@PathVariable Long id) {
-        boolean exists = repository.existsById(id);
+        boolean exists = userRepository.existsById(id);
         if (exists) {
-            repository.deleteById(id);
+            userRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Delete user successfully", "")
             );

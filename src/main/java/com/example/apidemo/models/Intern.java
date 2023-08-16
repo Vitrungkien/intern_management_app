@@ -14,14 +14,20 @@ public class Intern {
     private String email;
     @Column(name = "position")
     private String position;
-    @Column(name = "mentor_id")
-    private Long mentor_id;
 
-    public Intern(String name, String email, String position, Long mentor_id) {
+    @ManyToOne
+    @JoinColumn(name = "mentor_id")
+    private Mentor mentor;
+
+//    @OneToOne
+//    @MapsId
+//    private User user;
+
+    public Intern(String name, String email, String position, Mentor mentor) {
         this.name = name;
         this.email = email;
         this.position = position;
-        this.mentor_id = mentor_id;
+        this.mentor = mentor;
     }
 
     public Intern() {
@@ -60,22 +66,20 @@ public class Intern {
         this.position = position;
     }
 
-    public Long getMentor_id() {
-        return mentor_id;
+    public Mentor getMentor() {
+        return mentor;
     }
 
-    public void setMentor_id(Long mentor_id) {
-        this.mentor_id = mentor_id;
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Intern{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", email='" + email + '\'' +
-//                ", position='" + position + '\'' +
-//                ", mentor_id=" + mentor_id +
-//                '}';
+//    public User getUser() {
+//        return user;
 //    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
 }

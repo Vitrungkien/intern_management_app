@@ -10,9 +10,11 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByUsername(String username);
-    @Query("SELECT u  FROM User u WHERE u.username LIKE %:keyword% OR u.email like %:keyword%")
+//    List<User> findByUsername(String username);
+    @Query("SELECT u  FROM User u WHERE u.userName LIKE %:keyword% OR u.email like %:keyword%")
     List<User> findByKeyword(@Param("keyword") String keyword);
 
-    User findByEmail(String email);
+    User findByUserName(String userName);
+    boolean existsByUserName(String userName);
+    boolean existsByEmail(String email);
 }

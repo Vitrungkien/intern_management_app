@@ -30,7 +30,7 @@ public class InternController {
             existingIntern.setName(newIntern.getName());
             existingIntern.setEmail(newIntern.getEmail());
             existingIntern.setPosition(newIntern.getPosition());
-            existingIntern.setMentor_id(newIntern.getMentor_id());
+//            existingIntern.setMentor_id(newIntern.getMentor_id());
             Intern updatedIntern = internRepository.save(existingIntern);
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "update infor successfully", updatedIntern)

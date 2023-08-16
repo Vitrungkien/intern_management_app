@@ -3,6 +3,8 @@ package com.example.apidemo.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "mentor", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 
@@ -17,10 +19,14 @@ public class Mentor {
     @Column(name = "position")
     private String position;
 
-    public Mentor(String name, String email, String position) {
+    @OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
+    private List<Intern> interns;
+
+    public Mentor(String name, String email, String position, List<Intern> interns) {
         this.name = name;
         this.email = email;
         this.position = position;
+        this.interns = interns;
     }
 
     public Mentor() {
