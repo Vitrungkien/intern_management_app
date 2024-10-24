@@ -1,1 +1,1 @@
-# learn_spring_boot_2023
+# Intern management App
